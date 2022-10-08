@@ -1,11 +1,17 @@
 import React from 'react'
-// import SignIn from './Components/SignIn'
+import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
+import Home from './Components/Home'
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <div>
-      <SignUp/>
+    <Routes>
+    <Route path='SignIn' element={<SignIn/>} />
+    <Route path='/' element={<Home/>} />
+    <Route path='SignUp' element={<SignUp/>} />
+    </Routes>
     </div>
   )
 }
