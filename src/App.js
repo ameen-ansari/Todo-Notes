@@ -3,6 +3,7 @@ import SignIn from './Components/SignIn'
 import SignUp from './Components/SignUp'
 import Home from './Components/Home'
 import { Routes, Route } from "react-router-dom";
+import Card from './Components/Card';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
     <Route path='/' element={<Home/>} />
     <Route path='SignUp' element={<SignUp/>} />
     </Routes>
+    <Card />
     </div>
   )
 }

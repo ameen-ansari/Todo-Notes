@@ -1,5 +1,5 @@
 .singinform {
-  width: 65vw;
+  width: 100vw !important; 
   height: 100vh;
   display: flex;
   justify-content: space-evenly;
