@@ -1,0 +1,31 @@
+.singinform {
+  width: 65vw;
+  height: 100vh;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.singinform button {
+  width: 30%;
+  align-self: center;
+}
+.p1 {
+  font-size: 36px;
+  text-align: center;
+  font-family: 'verdana';
+}
+.parent1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+@media (max-width: 700px) {
+  .singinform {
+    width: 95vw;
+    height: 100vh;
+  }
+}
