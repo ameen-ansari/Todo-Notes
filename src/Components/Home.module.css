@@ -29,7 +29,19 @@ label {
 .inbtn {
   position: absolute;
   top: 1rem;
-  right: 3rem;
+  right: 1.5rem;
+}
+.unam span{
+  color: orange;
+  font-size: 20px;
+}
+.unam {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
 }
 @media (max-width: 700px) {
   .singinform {

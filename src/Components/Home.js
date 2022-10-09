@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import home from './Home.module.css'
+import Card from './Card.js'
 import { Link } from "react-router-dom";
-
-export default function Home() {
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { auth, db } from '../Firebase';
+var userdata = []
+export default function Home(props) {
   const [data, setdata] = useState({
     title: "",
     description: ""
@@ -11,13 +14,20 @@ export default function Home() {
     let inputs = { [e.target.name]: e.target.value }
     setdata({ ...data, ...inputs })
   }
-  let submit = (e) => {
+  let submit = async (e) => {
+    let myUser = auth.currentUser.uid
     e.preventDefault()
     console.log(data)
     setdata({
       title: "",
       description: ""
     })
+    try {
+      await addDoc(collection(db, myUser), data)
+      userdata = []
+    } catch (e) {
+      alert(e.message)
+    }
   }
   let stylishobj1 = { flexDirection: 'column', display: 'flex', boxSizing: 'border-box', alignIitems: 'center', justifyContent: 'center', height: '100vh' }
   return (
@@ -27,6 +37,7 @@ export default function Home() {
       </Link>
       <div className={home.parent1}>
         <form style={stylishobj1} className={`mb-3 ${home.singinform} container`}>
+          <p className={home.unam}>Welcome <span>{props.uname}</span></p>
           <p className={home.p1}>My Notes</p>
           <div className="mb-3 ">
             <label htmlFor="exampleInputEmail1" className="form-label">Add Title</label>
@@ -39,6 +50,8 @@ export default function Home() {
           <button onClick={submit} className="btn btn-primary">Add Note</button>
         </form>
       </div >
+      <Card mm={props.nn}/>
     </div>
   )
 }
+export { userdata }

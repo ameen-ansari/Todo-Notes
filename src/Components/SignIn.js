@@ -12,13 +12,14 @@ export default function SignIn() {
   let Sin = async (e) => {
     e.preventDefault()
     console.log(userData);
-    setuserData({
-      UserEmail: "",
-      password: ""
-    })
-    try{
+    try {
       await signInWithEmailAndPassword(auth, userData.UserEmail, userData.password)
-    }catch (e) {
+      setuserData({
+        UserEmail: "",
+        password: ""
+      })
+      alert('Log In Successful')
+    } catch (e) {
       alert(e.message)
     }
   }

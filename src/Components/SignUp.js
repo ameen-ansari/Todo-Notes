@@ -19,13 +19,13 @@ export default function SignUp() {
     }
     let Sup = async (e) => {
         e.preventDefault()
-        setudata({
-            mail: "",
-            password: ""
-        })
         try{
             await createUserWithEmailAndPassword(auth , udata.mail , udata.password)
             alert('Acount Created')
+            setudata({
+                mail: "",
+                password: ""
+            })
         }catch(e){
             alert(e.message)
         }
