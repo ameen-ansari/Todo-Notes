@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styl from './Signin.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from '../Firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignIn() {
+  let navigate1 = useNavigate()
   const [userData, setuserData] = useState({
     UserEmail: "",
     password: ""
@@ -19,6 +20,7 @@ export default function SignIn() {
         password: ""
       })
       alert('Log In Successful')
+      navigate1('/')
     } catch (e) {
       alert(e.message)
     }

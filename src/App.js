@@ -18,7 +18,7 @@ export default function App() {
     <div>
       <Routes>
         <Route path='SignIn' element={<SignIn />} />
-        <Route path='/' element={<Home uname={myu.email} kk={myu.uid} />} />
+        <Route path='/' element={<Home uname={myu?.email} />} />
         <Route path='SignUp' element={<SignUp />} />
       </Routes>
       {/* <Card /> */}

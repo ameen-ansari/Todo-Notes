@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react'
 import style1 from './Signup.module.css'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase";
 
 export default function SignUp() {
+    let navigate = useNavigate()
     const [udata, setudata] = useState({
         mail: "",
         password: ""
@@ -19,14 +20,15 @@ export default function SignUp() {
     }
     let Sup = async (e) => {
         e.preventDefault()
-        try{
-            await createUserWithEmailAndPassword(auth , udata.mail , udata.password)
+        try {
+            await createUserWithEmailAndPassword(auth, udata.mail, udata.password)
             alert('Acount Created')
             setudata({
                 mail: "",
                 password: ""
             })
-        }catch(e){
+            navigate('/')
+        } catch (e) {
             alert(e.message)
         }
     }
