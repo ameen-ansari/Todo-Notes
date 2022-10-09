@@ -18,7 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore();
+const db = getFirestore(app);
 export { app, auth, db }
 // npm WARN deprecated core - js@3.6.5: core - js@< 3.23.3 is no longer maintained and not recommended for usage due to the number of issues.Because of the V8 engine whims, feature detection in old core - js versions could cause a slowdown up to 100x 
 // even if nothing is polyfilled.Some versions have web compatibility issues.Please, upgrade your dependencies to the actu

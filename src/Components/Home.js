@@ -4,7 +4,6 @@ import Card from './Card.js'
 import { Link } from "react-router-dom";
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { auth, db } from '../Firebase';
-var userdata = []
 export default function Home(props) {
   const [data, setdata] = useState({
     title: "",
@@ -24,11 +23,12 @@ export default function Home(props) {
     })
     try {
       await addDoc(collection(db, myUser), data)
-      userdata = []
     } catch (e) {
       alert(e.message)
     }
   }
+
+
   let stylishobj1 = { flexDirection: 'column', display: 'flex', boxSizing: 'border-box', alignIitems: 'center', justifyContent: 'center', height: '100vh' }
   return (
     <div>
@@ -50,8 +50,7 @@ export default function Home(props) {
           <button onClick={submit} className="btn btn-primary">Add Note</button>
         </form>
       </div >
-      <Card mm={props.nn}/>
+      <Card ll={props.kk} />
     </div>
   )
 }
-export { userdata }
