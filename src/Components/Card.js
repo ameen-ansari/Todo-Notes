@@ -55,7 +55,7 @@ export default function Card() {
     // console.log("users =>", users);
     return (
         <>
-            <h1 className={`mt-4 text-center ${cardcss.rapper}`}>My Notes</h1>
+            <h1 className={`mt-1 text-center ${cardcss.rapper}`}>My Notes</h1>
             <div id="rapet" className={`${cardcss.rapper} d-flex container flex-wrap  justify-content-center `}>
                 {
                     users.map((e, i) => {
