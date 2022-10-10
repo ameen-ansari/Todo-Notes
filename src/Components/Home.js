@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import home from './Home.module.css'
 import Card from './Card.js'
 import { Link } from "react-router-dom";
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs} from 'firebase/firestore';
 import { auth, db } from '../Firebase';
 import { signOut } from 'firebase/auth';
 export default function Home(props) {
@@ -49,6 +49,14 @@ export default function Home(props) {
   let btnManager = async () => {
     await signOut(auth)
   }    
+  let reset = async (e) => {
+    e.preventDefault()
+
+    const querySnapshot = await getDocs(collection(db, auth.currentUser.uid))
+    querySnapshot.forEach(async (oc) => {
+        await deleteDoc(doc(db, auth.currentUser.uid, oc.id))
+    })
+  }    
 
   let stylishobj1 = { flexDirection: 'column', display: 'flex', boxSizing: 'border-box', alignIitems: 'center', justifyContent: 'center', height: '100vh' }
   return (
@@ -70,7 +78,10 @@ export default function Home(props) {
             <label htmlFor="exampleInputPassword1" className="form-label">Description</label>
             <textarea cols="30" name="description" value={data.description} onChange={onchangefunc} rows='5' placeholder='Enter Description Here' className="form-control" id="exampleInputPassword1" />
           </div>
-          <button onClick={submit} className="btn btn-primary">Add Note</button>
+          <div className={`mx-auto ${home.btntwo}`}>
+          <button onClick={submit} className="m-2 btn btn-primary">Add Note</button>
+          <button onClick={reset} className="m-2  btn btn-primary">Reset</button>
+          </div>
         </form>
       </div >
       <Card />

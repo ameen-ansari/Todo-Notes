@@ -40,6 +40,7 @@ label {
   color: orange;
   font-size: 20px;
 }
+
 .unam {
   /* position: absolute; */
   /* top: 1rem; */
@@ -52,5 +53,14 @@ label {
   .singinform {
     width: 95vw;
     height: 100vh;
+  }
+}
+@media (max-width: 360px) {
+  .btntwo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
   }
 }
