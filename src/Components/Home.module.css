@@ -52,7 +52,8 @@ label {
 @media (max-width: 700px) {
   .singinform {
     width: 95vw;
-    height: 100vh;
+    height: 100vh;}
+
   .unam span{
   color: orange;
   font-size: 26px;
