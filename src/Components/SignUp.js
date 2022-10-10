@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react'
 import style1 from './Signup.module.css'
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../Firebase";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -33,8 +33,6 @@ export default function SignUp() {
                 mail: "",
                 password: ""
             })
-
-            console.log(udata);
             navigate('/')
         } catch (e) {
             alert(e.message)

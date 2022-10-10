@@ -18,3 +18,8 @@
         width: 80%;
     }
 }
+@media (max-height:450px) {
+    .rapper {
+        display: none !important;
+    }
+}

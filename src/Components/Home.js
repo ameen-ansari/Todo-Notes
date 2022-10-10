@@ -65,7 +65,7 @@ export default function Home(props) {
         <button id="sinout" onClick={btnManager} className={`${home.lout} btn btn-primary`} >{props.btnm}</button>
       </Link>
       <div className={home.parent1}>
-        <form style={stylishobj1} className={`mb-3 ${home.singinform} container`}>
+        <form style={stylishobj1} className={`${home.singinform} container`}>
           <div className="flex-column pt-4 d-flex justify-content-center align-items-center">
           <p className={home.unam}><span>{props.uname}</span></p>
           <p className={home.p1}>Add Note</p>

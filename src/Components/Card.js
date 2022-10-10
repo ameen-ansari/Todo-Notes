@@ -1,4 +1,4 @@
-import { doc, deleteDoc, deleteField, updateDoc } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from 'react'
 import { auth, db } from '../Firebase'
 import { collection, getDocs } from "firebase/firestore";
@@ -21,21 +21,18 @@ export default function Card() {
         }
         getData()
     })
-    let btnmanager = async (e) => {
+    let btnmanager = async (j) => {
+        let re = document.getElementById('rapet').childNodes
         const querySnapshot = await getDocs(collection(db, user.uid))
+        let earr = []
         querySnapshot.forEach(async (oc) => {
-            await deleteDoc(doc(db, auth.currentUser.uid, oc.id))
+            earr.push(oc.id)
         })
-        // let ty = doc(db, auth.currentUser.uid, 'Qf8vGTzHfJYm98kRUoX4');
-
-        // Remove the 'capital' field from the document
-        // updateDoc(ty, {
-        //     title: deleteField(),
-        //     description: deleteField(),
-        // });
-        // await deleteDoc(doc(db, auth.currentUser.uid, 'Qf8vGTzHfJYm98kRUoX4'));
-
-        // e.target.parentElement.parentElement.remove()
+        Array.from(re).forEach((e, i) => {
+            e.setAttribute("id", earr[i])
+        })
+        let userCall = j.target.parentElement.parentElement.getAttribute("id")
+        await deleteDoc(doc(db, auth.currentUser.uid, userCall));
     }
     //Code With the Help Of Ahmad Bro 
     // const [users, setUsers] = useState([])
@@ -58,8 +55,8 @@ export default function Card() {
     // console.log("users =>", users);
     return (
         <>
-            <h1 className='text-center'>My Notes</h1>
-            <div className='d-flex container flex-wrap  justify-content-center '>
+            <h1 className={`mt-4 text-center ${cardcss.rapper}`}>My Notes</h1>
+            <div id="rapet" className={`${cardcss.rapper} d-flex container flex-wrap  justify-content-center `}>
                 {
                     users.map((e, i) => {
                         return (
