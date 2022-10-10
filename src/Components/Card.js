@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { auth, db } from '../Firebase'
 import { collection, getDocs } from "firebase/firestore";
+import cardcss from "./card.module.css"
 
 export default function Card() {
     const user = auth.currentUser
@@ -40,23 +41,26 @@ export default function Card() {
 
     // console.log("users =>", users);
     return (
-        <div className='d-flex container flex-wrap '>
-            {
-                users.map((e, i) => {
-                    return (
-                        <div key={i} className="card m-2">
-                            <div className="card-header">
-                                {i+1}
+        <>
+            <h1 className='text-center m-4'>My Notes</h1>
+            <div className='d-flex container flex-wrap  justify-content-center '>
+                {
+                    users.map((e, i) => {
+                        return (
+                            <div key={i} className={`${cardcss.mw} card m-2`}>
+                                <div className="card-header">
+                                    {i + 1}
+                                </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">{e.title}</h5>
+                                    <p className="card-text">{e.description}</p>
+                                    <a href='/' className="btn btn-primary">Delete</a>
+                                </div>
                             </div>
-                            <div className="card-body">
-                                <h5 className="card-title">{e.title}</h5>
-                                <p className="card-text">{e.description}</p>
-                                <a href='/' className="btn btn-primary">Delete</a>
-                            </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                        )
+                    })
+                }
+            </div>
+        </>
     )
 }

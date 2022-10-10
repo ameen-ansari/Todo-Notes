@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import home from './Home.module.css'
 import Card from './Card.js'
-import { Link, useNavigate } from "react-router-dom";
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { Link } from "react-router-dom";
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { auth, db } from '../Firebase';
 import { signOut } from 'firebase/auth';
 export default function Home(props) {
@@ -46,20 +46,22 @@ export default function Home(props) {
   //     navigate('/SignIn')
   //   }
   // },[])
+  let btnManager = async () => {
+    await signOut(auth)
+  }    
 
   let stylishobj1 = { flexDirection: 'column', display: 'flex', boxSizing: 'border-box', alignIitems: 'center', justifyContent: 'center', height: '100vh' }
   return (
     <div>
       <Link to='/SignIn'>
-        <button className={`${home.inbtn} btn btn-primary`} >SignIn</button>
-        <button onClick={async () => {
-          await signOut(auth)
-        }} className={`${home.lout} btn btn-primary`} >Logout</button>
+        <button id="sinout" onClick={btnManager} className={`${home.lout} btn btn-primary`} >{props.btnm}</button>
       </Link>
       <div className={home.parent1}>
         <form style={stylishobj1} className={`mb-3 ${home.singinform} container`}>
-          <p className={home.unam}>Welcome <span>{props?.uname}</span></p>
-          <p className={home.p1}>My Notes</p>
+          <div className="flex-column pt-4 d-flex justify-content-center align-items-center">
+          <p className={home.unam}><span>{props.uname}</span></p>
+          <p className={home.p1}>Add Note</p>
+          </div>
           <div className="mb-3 ">
             <label htmlFor="exampleInputEmail1" className="form-label">Add Title</label>
             <input type="text" name="title" value={data.title} onChange={onchangefunc} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Title Here' />

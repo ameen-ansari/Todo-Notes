@@ -3,10 +3,10 @@
   height: 100vh;
 }
 .p1 {
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
   font-family: 'verdana';
-  margin: 3rem;
+  margin: 1rem;
 }
 .parent1 {
   display: flex;
@@ -34,16 +34,16 @@ label {
 .lout {
   position: absolute;
   top: 1rem;
-  right: 8rem;
+  right: 1.5rem;
 }
 .unam span{
   color: orange;
   font-size: 20px;
 }
 .unam {
-  position: absolute;
-  top: 1rem;
-  left: 2rem;
+  /* position: absolute; */
+  /* top: 1rem; */
+  /* left: 2rem; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 500;
   font-size: 18px;

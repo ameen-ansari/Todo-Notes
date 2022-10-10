@@ -1,14 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react'
 import style1 from './Signup.module.css'
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../Firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function SignUp() {
     let navigate = useNavigate()
     const [udata, setudata] = useState({
+        UserName: "",
+        phoneNumber: "",
         mail: "",
-        password: ""
+        password: "",
+        uid: ""
     })
     let userdata = (e) => {
         let input = {
@@ -21,12 +25,16 @@ export default function SignUp() {
     let Sup = async (e) => {
         e.preventDefault()
         try {
-            await createUserWithEmailAndPassword(auth, udata.mail, udata.password)
+            let uUser = await createUserWithEmailAndPassword(auth, udata.mail, udata.password)
+            setudata(udata.uid = uUser.user?.uid)
+            await addDoc(collection(db, "users"), udata)
             alert('Acount Created')
             setudata({
                 mail: "",
                 password: ""
             })
+
+            console.log(udata);
             navigate('/')
         } catch (e) {
             alert(e.message)
@@ -44,13 +52,13 @@ export default function SignUp() {
                     </div>
                     <div className="m-2 ">
                         <label htmlFor="exampleInputEmail2" className="form-label">UserName</label>
-                        <input type="text" className="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder='Enter Name Here' />
+                        <input value={udata.UserName} name="UserName" onChange={userdata} type="text" className="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder='Enter Name Here' />
                     </div>
                 </div>
                 <div className={` ${style1.p2}`}>
                     <div className="m-2 ">
                         <label htmlFor="exampleInputEmail3" className="form-label">Phone #</label>
-                        <input type="number" className="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder='Phone Number' />
+                        <input onChange={userdata} value={udata.phoneNumber} name="phoneNumber" type="number" className="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder='Phone Number' />
                     </div>
                     <div className="m-2 ">
                         <label htmlFor="exampleInputEmail3" className="form-label">Password</label>
@@ -58,7 +66,7 @@ export default function SignUp() {
                     </div>
                 </div>
                 <div className={`mb-3 ${style1.p3}`}>
-                    <button type="submit" className="m-2 btn btn-primary" onClick={Sup}>Submit</button>
+                    <button type="submit" className="m-2 btn btn-primary" onClick={Sup}>SignUP</button>
                     <Link to='/SignIn'>
                         <button className="m-2 btn btn-primary">SignIn</button>
                     </Link>

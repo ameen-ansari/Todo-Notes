@@ -12,7 +12,6 @@ export default function SignIn() {
   })
   let Sin = async (e) => {
     e.preventDefault()
-    console.log(userData);
     try {
       await signInWithEmailAndPassword(auth, userData.UserEmail, userData.password)
       setuserData({
@@ -24,7 +23,7 @@ export default function SignIn() {
     } catch (e) {
       alert(e.message)
     }
-  }
+  } 
   let assignvalues = (e) => {
     let input1 = {
       [e.target.name]: e.target.value

@@ -1,10 +1,20 @@
-.card1 {
-    /* min-width: 35%; */
-    max-width: 300px;
+@media (max-width:1500px) {
+    .mw {
+        width: 20%;
+    }
 }
-.cardp {
-    display: flex;
-    flex-basis:4 4;
-    justify-content: center;
-    align-items: center;
+@media (max-width:1350px) {
+    .mw {
+        width: 30%;
+    }
+}
+@media (max-width:700px) {
+    .mw {
+        width: 45%;
+    }
+}
+@media (max-width:400px) {
+    .mw {
+        width: 80%;
+    }
 }
